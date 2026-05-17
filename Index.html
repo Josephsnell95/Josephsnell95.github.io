@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joseph · Insights & Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #f5f2ed;
+      --bg2:       #edeae4;
+      --text:      #1c1c1a;
+      --muted:     #7a7870;
+      --faint:     #c8c4bc;
+      --green:     #3a6343;
+      --green-lt:  #eef3ee;
+      --green-mid: #c4d5c5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 99;
+      background: var(--bg);
+      border-bottom: 1px solid var(--faint);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 4rem;
+    }
+    .nav-logo {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* CONTAINER */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+    /* HERO */
+    #hero { padding: 0; border-bottom: 1px solid var(--faint); }
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 9rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: var(--green);
+    }
+    h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--green); }
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 380px;
+    }
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--faint);
+      border: 1px solid var(--faint);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .hero-stat {
+      background: white;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s;
+    }
+    .hero-stat:hover { background: var(--green-lt); }
+    .stat-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    .stat-value {
+      font-family: 'Lora', serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+    .hero-cta { display: flex; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.4rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .btn-solid { background: var(--green); color: #fff; }
+    .btn-solid:hover { background: #2d4e35; }
+    .btn-outline { border: 1px solid var(--faint); color: var(--muted); background: white; }
+    .btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+    /* SECTIONS */
+    section { padding: 5rem 0; border-bottom: 1px solid var(--faint); }
+    section:last-of-type { border-bottom: none; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.5rem;
+    }
+
+    /* SKILLS */
+    .skills-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--faint);
+      border: 1px solid var(--faint);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .skill-row {
+      background: white;
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: background 0.2s;
+    }
+    .skill-row:hover { background: var(--green-lt); }
+    .skill-glyph { font-size: 1.1rem; margin-top: 0.1rem; flex-shrink: 0; }
+    .skill-name { font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem; }
+    .skill-note { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* JOURNEY */
+    #journey { background: var(--bg2); }
+    .journey-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--faint);
+    }
+    .journey-item:last-child { border-bottom: none; }
+    .journey-date {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 0.15rem;
+    }
+    .journey-title {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .journey-text { font-size: 0.87rem; color: var(--muted); line-height: 1.75; }
+    .journey-item.current .journey-title { color: var(--green); }
+
+    /* PROJECTS */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--faint);
+      border: 1px solid var(--faint);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .project-row {
+      background: white;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: start;
+      transition: background 0.2s;
+    }
+    .project-row:hover { background: var(--green-lt); }
+    .project-type {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.3rem;
+    }
+    .project-name {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .project-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+    .stack-tags { display: flex; gap: 0.35rem; margin-top: 0.6rem; flex-wrap: wrap; }
+    .stag {
+      font-size: 0.67rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      background: var(--bg2);
+      color: var(--muted);
+      border: 1px solid var(--faint);
+    }
+    .project-links { display: flex; flex-direction: column; gap: 0.4rem; align-items: flex-end; }
+    .plink {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .plink:hover { color: var(--green); }
+
+    /* NOTEBOOKS */
+    #notebooks { background: var(--bg2); }
+    .notebooks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--faint);
+      border: 1px solid var(--faint);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .notebook-row {
+      background: white;
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.2s;
+    }
+    .notebook-row:hover { background: var(--green-lt); }
+    .nb-left { display: flex; gap: 1rem; align-items: center; }
+    .nb-icon {
+      width: 34px; height: 34px;
+      background: var(--green-lt);
+      border: 1px solid var(--green-mid);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .nb-title { font-size: 0.88rem; font-weight: 500; margin-bottom: 0.1rem; }
+    .nb-meta { font-size: 0.73rem; color: var(--muted); }
+    .nb-arrow { font-size: 0.8rem; color: var(--faint); transition: color 0.2s; }
+    .notebook-row:hover .nb-arrow { color: var(--green); }
+
+    /* CONTACT */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-text h2 { margin-bottom: 0.75rem; }
+    .contact-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.5rem; }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--faint);
+      border: 1px solid var(--faint);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .contact-link-row {
+      background: white;
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    .contact-link-row:hover { background: var(--green-lt); }
+    .contact-link-row span { color: var(--muted); font-size: 0.72rem; letter-spacing: 0.05em; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--faint);
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.03em; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; padding: 7rem 1.5rem 3.5rem; }
+      .hero-right { display: none; }
+      .skills-list { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .journey-item { grid-template-columns: 1fr; gap: 0.2rem; }
+      .project-row { grid-template-columns: 1fr; }
+      section { padding: 3.5rem 0; }
+      .container { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Joseph</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#notebooks">Notebooks</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Senior Business Insights Analyst</div>
+      <h1>Data that drives<br><em>real decisions.</em></h1>
+      <p class="hero-desc">
+        I work in MRO — a complex, fragmented industry — using Python, SQL, and Power BI to turn messy multi-system data into insights that actually change how decisions get made. This is where I document that journey.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-solid">View Projects</a>
+        <a href="#notebooks" class="btn btn-outline">Notebooks</a>
+        <a href="https://github.com/yourusername" target="_blank" class="btn btn-outline">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat">
+        <span class="stat-label">Current Role</span>
+        <span class="stat-value">Sr. Business Insights Analyst</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-label">Domain</span>
+        <span class="stat-value">MRO · Inventory Optimisation</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-label">Core Stack</span>
+        <span class="stat-value">Python · SQL · Power BI</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-label">Right Now</span>
+        <span class="stat-value">Learning in public · Building this</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">What I work with</p>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-list reveal">
+      <div class="skill-row">
+        <div class="skill-glyph">🐍</div>
+        <div>
+          <div class="skill-name">Python</div>
+          <div class="skill-note">My glue layer — pandas, requests, sqlalchemy. Pulling from APIs, Qlik exports, and SQL into one consistent output.</div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-glyph">🗄️</div>
+        <div>
+          <div class="skill-name">SQL</div>
+          <div class="skill-note">Querying ERP backends, transformation logic, and data models that feed downstream Power BI reporting.</div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-glyph">📊</div>
+        <div>
+          <div class="skill-name">Power BI</div>
+          <div class="skill-note">DAX, Power Query, gateway management, and scheduled refresh across a multi-server environment.</div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-glyph">🔗</div>
+        <div>
+          <div class="skill-name">API Integration</div>
+          <div class="skill-note">REST APIs with Python — authentication, pagination, loading JSON responses cleanly into DataFrames.</div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-glyph">☁️</div>
+        <div>
+          <div class="skill-name">Azure DevOps</div>
+          <div class="skill-note">Version control for scripts and pipelines across a fragmented multi-system landscape.</div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-glyph">📦</div>
+        <div>
+          <div class="skill-name">Inventory Analytics</div>
+          <div class="skill-note">Domain expertise in MRO — demand signals, stock classification, and cost reduction framing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">How I got here</p>
+      <h2>Learning Journey</h2>
+    </div>
+    <div>
+      <div class="journey-item reveal">
+        <div class="journey-date">Start</div>
+        <div>
+          <div class="journey-title">Excel & SQL Foundations</div>
+          <div class="journey-text">Built early reporting in a fragmented data environment — manual Qlik exports, legacy ERP queries. Learned to find signal in messy systems with limited tooling.</div>
+        </div>
+      </div>
+      <div class="journey-item reveal">
+        <div class="journey-date">Milestone</div>
+        <div>
+          <div class="journey-title">Python as the Glue Layer</div>
+          <div class="journey-text">Started using Python and pandas to automate what I'd been doing manually — merging data across two ERPs and two CRMs into a consistent output written back to a legacy database.</div>
+        </div>
+      </div>
+      <div class="journey-item reveal">
+        <div class="journey-date">Milestone</div>
+        <div>
+          <div class="journey-title">Power BI at Scale</div>
+          <div class="journey-text">Moved from static reports to live dashboards with scheduled refresh, a medallion-style data architecture, and DAX logic tailored per operational team.</div>
+        </div>
+      </div>
+      <div class="journey-item current reveal">
+        <div class="journey-date">Now</div>
+        <div>
+          <div class="journey-title">Building in Public</div>
+          <div class="journey-text">Documenting projects, methodology, and learning here. The goal is to sharpen thinking, build a visible track record, and contribute back to the analytics community.</div>
+        </div>
+      </div>
+      <div class="journey-item reveal">
+        <div class="journey-date">Next</div>
+        <div>
+          <div class="journey-title">ML for Inventory Forecasting</div>
+          <div class="journey-text">Exploring demand forecasting and anomaly detection in MRO stock data — where machine learning can complement rule-based optimisation approaches.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">What I've built</p>
+      <h2>Projects</h2>
+    </div>
+    <div class="projects-list reveal">
+      <div class="project-row">
+        <div>
+          <div class="project-type">Python · Inventory</div>
+          <div class="project-name">MRO Stock Level Optimiser</div>
+          <div class="project-desc">Merges ERP stock data with historical usage to flag over/understocked items. Outputs recommendations directly to a legacy database via sqlalchemy.</div>
+          <div class="stack-tags">
+            <span class="stag">Python</span><span class="stag">pandas</span><span class="stag">SQL</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="#" class="plink">📓 Notebook ↗</a>
+          <a href="#" class="plink">⌥ Repo ↗</a>
+        </div>
+      </div>
+      <div class="project-row">
+        <div>
+          <div class="project-type">Power BI · Dashboard</div>
+          <div class="project-name">Operational KPI Dashboard</div>
+          <div class="project-desc">Live Power BI dashboard tracking inventory and operational metrics across client accounts — built on Python-prepped datasets with gateway-managed refresh.</div>
+          <div class="stack-tags">
+            <span class="stag">Power BI</span><span class="stag">DAX</span><span class="stag">Power Query</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="#" class="plink">🖼 Screenshot ↗</a>
+          <a href="#" class="plink">📄 Write-up ↗</a>
+        </div>
+      </div>
+      <div class="project-row">
+        <div>
+          <div class="project-type">Python · API Integration</div>
+          <div class="project-name">CRM–ERP Data Bridge</div>
+          <div class="project-desc">Automated pipeline using requests + pandas to pull CRM data via REST API and reconcile it with ERP records — eliminating a manual weekly export process.</div>
+          <div class="stack-tags">
+            <span class="stag">Python</span><span class="stag">REST</span><span class="stag">pandas</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="#" class="plink">📓 Notebook ↗</a>
+          <a href="#" class="plink">⌥ Repo ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTEBOOKS -->
+<section id="notebooks">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Notes & workings</p>
+      <h2>Notebooks</h2>
+    </div>
+    <div class="notebooks-list reveal">
+      <a href="#" class="notebook-row">
+        <div class="nb-left">
+          <div class="nb-icon">📓</div>
+          <div>
+            <div class="nb-title">Pandas Data Merging Patterns</div>
+            <div class="nb-meta">Python · pandas — mismatched keys, nulls, schema drift</div>
+          </div>
+        </div>
+        <span class="nb-arrow">→</span>
+      </a>
+      <a href="#" class="notebook-row">
+        <div class="nb-left">
+          <div class="nb-icon">📊</div>
+          <div>
+            <div class="nb-title">DAX Patterns I Actually Use</div>
+            <div class="nb-meta">Power BI · DAX — time intelligence, ranking, conditional logic</div>
+          </div>
+        </div>
+        <span class="nb-arrow">→</span>
+      </a>
+      <a href="#" class="notebook-row">
+        <div class="nb-left">
+          <div class="nb-icon">🔗</div>
+          <div>
+            <div class="nb-title">REST API Calls with requests</div>
+            <div class="nb-meta">Python · APIs — auth, pagination, loading into DataFrames</div>
+          </div>
+        </div>
+        <span class="nb-arrow">→</span>
+      </a>
+      <a href="#" class="notebook-row">
+        <div class="nb-left">
+          <div class="nb-icon">🗄️</div>
+          <div>
+            <div class="nb-title">SQL to Python Handoff Patterns</div>
+            <div class="nb-meta">SQL · Python — when to transform where, and how to draw the line</div>
+          </div>
+        </div>
+        <span class="nb-arrow">→</span>
+      </a>
+      <a href="#" class="notebook-row">
+        <div class="nb-left">
+          <div class="nb-icon">📦</div>
+          <div>
+            <div class="nb-title">Inventory ABC Analysis in Python</div>
+            <div class="nb-meta">Python · Inventory — classifying MRO stock by velocity and value</div>
+          </div>
+        </div>
+        <span class="nb-arrow">→</span>
+      </a>
+      <a href="#" class="notebook-row">
+        <div class="nb-left">
+          <div class="nb-icon">🧪</div>
+          <div>
+            <div class="nb-title">EDA on Fragmented Data</div>
+            <div class="nb-meta">Python · EDA — null patterns, duplicate detection, schema validation</div>
+          </div>
+        </div>
+        <span class="nb-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-text reveal">
+        <p class="section-label">Get in touch</p>
+        <h2>Let's talk.</h2>
+        <p>Happy to connect about data, MRO, Python, or anything analytics-adjacent. Always open to a good conversation.</p>
+        <a href="mailto:your@email.com" class="btn btn-solid">Send an email</a>
+      </div>
+      <div class="contact-links reveal">
+        <a href="https://github.com/yourusername" target="_blank" class="contact-link-row">
+          <strong>GitHub</strong>
+          <span>github.com/yourusername ↗</span>
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link-row">
+          <strong>LinkedIn</strong>
+          <span>linkedin.com/in/yourprofile ↗</span>
+        </a>
+        <a href="mailto:your@email.com" class="contact-link-row">
+          <strong>Email</strong>
+          <span>your@email.com</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Joseph · Business Insights Analyst</p>
+  <p>Built with GitHub Pages</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

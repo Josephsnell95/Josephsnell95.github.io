@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf \"c:/Users/Joseph/Github/Josephsnell95.github.io/_config.yml\" \"c:/Users/Joseph/Github/Josephsnell95.github.io/_layouts\" \"c:/Users/Joseph/Github/Josephsnell95.github.io/_includes\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Joseph\\Github\\Josephsnell95.github.io"
+    ]
+  }
+}

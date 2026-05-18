@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventory Optimisation · Joseph Snell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Joseph</a>
+  <a href="index.html" class="nav-back">← All Projects</a>
+</nav>
+
+<!-- HERO -->
+<div class="project-hero">
+  <div class="container container--narrow">
+    <div class="project-eyebrow">Demo Project · Inventory Analytics</div>
+    <h1>MRO Inventory<br><em>Optimisation Engine</em></h1>
+    <p class="project-summary">
+      A Python-based analytical framework that processes 24 months of goods issue and receiving history alongside unit cost data to generate statistically grounded inventory optimisation recommendations — safety stock levels, reorder points, economic order quantities, and ABC/XYZ classification — validated through walk-forward forecasting.
+    </p>
+
+    <div class="project-meta">
+      <div class="meta-item">
+        <span class="meta-label">Type</span>
+        <span class="meta-value">Demo · RNG Proxy Data</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Domain</span>
+        <span class="meta-value">MRO · Indirect Procurement</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Stack</span>
+        <span class="meta-value">Python · SQL · Power BI</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Status</span>
+        <span class="meta-value">Active Development</span>
+      </div>
+    </div>
+
+    <div class="project-cta">
+      <a href="https://github.com/Josephsnell95/mro_inventory_optimisation" target="_blank" class="btn btn-solid">View on GitHub ↗</a>
+      <a href="#walkthrough" class="btn btn-outline">Technical Walkthrough</a>
+    </div>
+  </div>
+</div>
+
+<div class="container container--narrow">
+
+  <!-- NOTICE -->
+  <div class="notice reveal">
+    <span class="notice-icon">ℹ️</span>
+    <span>This is a sanitised demo version using randomly generated proxy data. Certain production integrations — including live database connections and client-specific configurations — have been removed. Where a database connection is unavailable, outputs are written to Parquet files.</span>
+  </div>
+
+  <!-- PROBLEM -->
+  <div class="content-section reveal">
+    <p class="section-label">The problem</p>
+    <h2>Why inventory optimisation matters in MRO</h2>
+    <p>In maintenance, repair and operations environments, inventory decisions are rarely straightforward. Parts vary wildly in demand frequency, unit cost, and criticality. Overstocking ties up working capital; understocking risks operational downtime. Most organisations manage this with rules of thumb rather than data.</p>
+    <p>This project applies statistical and machine learning methods to answer a simple question more rigorously: <em>how much of each item should we hold, and when should we reorder?</em></p>
+  </div>
+
+  <!-- OUTPUTS -->
+  <div class="content-section reveal">
+    <p class="section-label">What it produces</p>
+    <h2>Optimisation metrics</h2>
+    <p>For each stock item, the engine calculates the following across 24 months of goods issue and receiving data, weighted by unit cost:</p>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-name">Safety Stock</div>
+        <div class="metric-desc">Buffer stock level accounting for demand variability and lead time uncertainty</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">Reorder Point</div>
+        <div class="metric-desc">The stock level at which a replenishment order should be triggered</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">EOQ</div>
+        <div class="metric-desc">Economic Order Quantity — the optimal order size balancing holding and ordering costs</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">ABC Classification</div>
+        <div class="metric-desc">Value-based segmentation — high, medium, and low value items by annual spend</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">XYZ Classification</div>
+        <div class="metric-desc">Demand variability segmentation — stable, variable, and irregular demand patterns</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">Walk-Forward Validation</div>
+        <div class="metric-desc">Forecast accuracy validated against held-out periods to assess model confidence</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL WALKTHROUGH -->
+  <div class="content-section reveal" id="walkthrough">
+    <p class="section-label">Technical walkthrough</p>
+    <h2>How it works</h2>
+    <p>The pipeline follows a structured flow from raw transactional data through to actionable recommendations. Jupyter notebooks are provided for each stage, designed to be readable as standalone documents as well as executable code.</p>
+    <p>Data ingestion reads goods issue and receiving records via SQL (SQLAlchemy) or from Parquet files in the demo configuration. Pandas handles all intermediate transformation — aggregation, cleaning, and feature engineering. Scikit-learn provides the statistical modelling layer for demand forecasting and classification. Matplotlib is used throughout the notebooks for visual diagnostics.</p>
+
+    <div class="embed-placeholder">
+      <span class="embed-icon">📓</span>
+      <p>Interactive notebook walkthrough — coming soon via nbviewer</p>
+    </div>
+  </div>
+
+  <!-- VISUALISATION -->
+  <div class="content-section reveal">
+    <p class="section-label">Visualisation layer</p>
+    <h2>Power BI dashboard</h2>
+    <p>The analytical outputs feed into a Power BI dashboard designed for client-facing delivery — aggregating holding cost reduction opportunities, the volume of actionable stock changes, and forecast confidence metrics. The intent is to give operational and procurement stakeholders a clear picture of what to act on and in what order.</p>
+
+    <div class="embed-placeholder">
+      <span class="embed-icon">📊</span>
+      <p>Power BI dashboard embed — coming once published to Power BI Service</p>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <div class="content-section reveal">
+    <p class="section-label">Stack</p>
+    <h2>Technologies used</h2>
+    <div class="stack-list">
+      <div class="stack-row">
+        <span class="stack-name">Python</span>
+        <span class="stack-role">Core modelling and pipeline orchestration</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">pandas</span>
+        <span class="stack-role">Data transformation and feature engineering</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">scikit-learn</span>
+        <span class="stack-role">Statistical models and walk-forward validation</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">SQLAlchemy</span>
+        <span class="stack-role">Database read/write (Parquet fallback in demo)</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">matplotlib</span>
+        <span class="stack-role">Diagnostic visualisations within notebooks</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">SQL</span>
+        <span class="stack-role">Source data extraction from ERP backend</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">Power BI</span>
+        <span class="stack-role">Client-facing visualisation and reporting layer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="content-section reveal">
+    <p class="section-label">What's next</p>
+    <h2>Roadmap</h2>
+    <div class="roadmap-list">
+      <div class="roadmap-item">
+        <span class="roadmap-status status-done">Done</span>
+        <div>
+          <div class="roadmap-title">Core statistical models</div>
+          <div class="roadmap-desc">Safety stock, reorder point, EOQ, ABC/XYZ classification and walk-forward validation framework.</div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-next">Next</span>
+        <div>
+          <div class="roadmap-title">Power BI visualisation layer</div>
+          <div class="roadmap-desc">Aggregated dashboard for client delivery — holding cost reduction, actionable changes, forecast confidence.</div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-future">Planned</span>
+        <div>
+          <div class="roadmap-title">nbviewer notebook embeds</div>
+          <div class="roadmap-desc">Full technical walkthrough notebooks embedded directly in this page via nbviewer.</div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-future">Planned</span>
+        <div>
+          <div class="roadmap-title">Criticality weighting</div>
+          <div class="roadmap-desc">Incorporating part criticality scores alongside cost and demand to refine stock recommendations for operational risk.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p><a href="../index.html" style="color: var(--green);">← Back to josephsnell95.github.io</a></p>
+  <p>Joseph Snell · MRO Inventory Optimisation</p>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

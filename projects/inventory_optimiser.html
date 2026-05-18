@@ -35,7 +35,7 @@
       </div>
       <div class="meta-item">
         <span class="meta-label">Stack</span>
-        <span class="meta-value">Python · SQL · Power BI</span>
+        <span class="meta-value">Python · Power BI</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">Status</span>
@@ -105,12 +105,15 @@
     <p class="section-label">Technical walkthrough</p>
     <h2>How it works</h2>
     <p>The pipeline follows a structured flow from raw transactional data through to actionable recommendations. Jupyter notebooks are provided for each stage, designed to be readable as standalone documents as well as executable code.</p>
-    <p>Data ingestion reads goods issue and receiving records via SQL (SQLAlchemy) or from Parquet files in the demo configuration. Pandas handles all intermediate transformation — aggregation, cleaning, and feature engineering. Scikit-learn provides the statistical modelling layer for demand forecasting and classification. Matplotlib is used throughout the notebooks for visual diagnostics.</p>
+    <p>In this demo, goods issue and receiving records are generated synthetically using a random number generator — stand-ins for the transactional data that would be pulled from an ERP in production. Pandas handles all intermediate transformation — aggregation, cleaning, and feature engineering. Scikit-learn provides the statistical modelling layer for demand forecasting and classification. Matplotlib is used throughout the notebooks for visual diagnostics.</p>
 
-    <div class="embed-placeholder">
-      <span class="embed-icon">📓</span>
-      <p>Interactive notebook walkthrough — coming soon via nbviewer</p>
-    </div>
+    <iframe
+      src="https://nbviewer.org/github/Josephsnell95/mro_inventory_optimisation/blob/main/inventory_optimisation/demo/demo_technical_walkthrough.ipynb"
+      width="100%"
+      height="900px"
+      style="border: 1px solid var(--faint); border-radius: 4px; margin-top: 1.5rem; display: block;"
+      loading="lazy">
+    </iframe>
   </div>
 
   <!-- VISUALISATION -->
@@ -143,16 +146,8 @@
         <span class="stack-role">Statistical models and walk-forward validation</span>
       </div>
       <div class="stack-row">
-        <span class="stack-name">SQLAlchemy</span>
-        <span class="stack-role">Database read/write (Parquet fallback in demo)</span>
-      </div>
-      <div class="stack-row">
         <span class="stack-name">matplotlib</span>
         <span class="stack-role">Diagnostic visualisations within notebooks</span>
-      </div>
-      <div class="stack-row">
-        <span class="stack-name">SQL</span>
-        <span class="stack-role">Source data extraction from ERP backend</span>
       </div>
       <div class="stack-row">
         <span class="stack-name">Power BI</span>
@@ -181,7 +176,7 @@
         </div>
       </div>
       <div class="roadmap-item">
-        <span class="roadmap-status status-future">Planned</span>
+        <span class="roadmap-status status-done">Done</span>
         <div>
           <div class="roadmap-title">nbviewer notebook embeds</div>
           <div class="roadmap-desc">Full technical walkthrough notebooks embedded directly in this page via nbviewer.</div>

@@ -1,6 +1,7 @@
 const WORKER_URL = 'https://bear-necessities-worker.josephsnell.workers.dev';
 let messages = [];
 
+
 const chatToggle = document.getElementById('chat-toggle');
 const closeBtn = document.getElementById('close-btn');
 const chatPanel = document.getElementById('chat-panel');
@@ -36,21 +37,20 @@ function closeChat() {
     sessionStorage.setItem('chatOpen', 'false');
 }
 
-closeBtn.addEventListener('click', closeChat)
+closeBtn.addEventListener('click', closeChat);
 
 function consentHandler() {
     consentNtc.style.display = 'none';
     chatInput.disabled = false;
-    sessionStorage.setItem('consented', 'true')
+    sessionStorage.setItem('consented', 'true');
 }
 
-consentBtn.addEventListener('click', consentHandler)
+consentBtn.addEventListener('click', consentHandler);
 
 if (sessionStorage.getItem('consented') === 'true') {
     consentNtc.style.display = 'none';
     chatInput.disabled = false;
 }
-
 
 function renderMessage(role, content) {
     const wrapper = document.createElement('div');
@@ -67,12 +67,14 @@ function renderMessage(role, content) {
     wrapper.appendChild(label);
     wrapper.appendChild(div);
     messageHst.appendChild(wrapper);
+    messageHst.scrollTop = messageHst.scrollHeight;
 }
 
 const saved = sessionStorage.getItem('chatMessages');
 if (saved) {
     messages = JSON.parse(saved);
     messages.forEach(m => renderMessage(m.role, m.content));
+    messageHst.scrollTop = messageHst.scrollHeight;
 }
 
 async function sendMessage() {
@@ -82,9 +84,9 @@ async function sendMessage() {
 
     messages.push({ role: 'user', content: content });
 
-    sessionStorage.setItem('chatMessages', JSON.stringify(messages));
-
     renderMessage('user', content);
+
+    sessionStorage.setItem('chatMessages', JSON.stringify(messages));
 
     chatInput.value = '';
 
@@ -92,25 +94,26 @@ async function sendMessage() {
 
     loading.style.display = 'block';
 
-    const response = await fetch(WORKER_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(messages)
-    });
-    const data = await response.json();
+    try {
+        const response = await fetch(WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(messages)
+        });
+        const data = await response.json();
 
-    messages.push({ role: 'assistant', content: data.reply });
-
-    sessionStorage.setItem('chatMessages', JSON.stringify(messages));
-
-    renderMessage('assistant', data.reply);
-
-    loading.style.display = 'none';
-
-    chatInput.disabled = false;
+        messages.push({ role: 'assistant', content: data.reply });
+        sessionStorage.setItem('chatMessages', JSON.stringify(messages));
+        renderMessage('assistant', data.reply);
+    } catch (err) {
+        renderMessage('assistant', "Something went wrong - try again, or reach out to Joe directly.");
+    } finally {
+        loading.style.display = 'none';
+        chatInput.disabled = false;
+    }
 };
 
-sendBtn.addEventListener('click', sendMessage)
+sendBtn.addEventListener('click', sendMessage);
 
 chatInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {

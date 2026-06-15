@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy · Joseph Snell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .policy-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--faint);
+    }
+    .content-section h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+    .content-section p + p { margin-top: 0.75rem; }
+    .content-section ul {
+      margin: 0.5rem 0 0 1.25rem;
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+    .policy-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+    .policy-table th {
+      text-align: left;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--faint);
+    }
+    .policy-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--faint);
+      color: var(--muted);
+      vertical-align: top;
+    }
+    .policy-table td:first-child { color: var(--text); font-weight: 400; }
+    .policy-table tr:last-child td { border-bottom: none; }
+    .policy-table a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+    .policy-footer-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav" data-type="sub" data-back-url="/" data-back-label="← Home"></div>
+
+<section id="hero" style="border-bottom: 1px solid var(--faint);">
+  <div class="hero-inner" style="grid-template-columns: 1fr; padding-bottom: 3.5rem;">
+    <div>
+      <div class="hero-eyebrow">Bear Necessities</div>
+      <h1>Privacy Policy</h1>
+      <p class="hero-desc">How the Bear Necessities chatbot handles your data — written plainly, not in legalese.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container container--narrow">
+
+    <div class="policy-meta">Last updated: June 2026 · Applies to the Bear Necessities chatbot embedded on josephsnell95.github.io</div>
+
+    <div class="content-section">
+      <h2>Who is responsible for this chatbot?</h2>
+      <p>Bear Necessities is a personal project built and operated by Joe Snell. It is not a commercial product and is not operated by any company.</p>
+      <p>To contact Joe directly, use the links in the footer of his portfolio site.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>What does Bear Necessities do with my messages?</h2>
+      <p>When you type a message into the chat widget, the following happens:</p>
+      <ul>
+        <li>Your message is sent to a Cloudflare Worker — a small piece of code running on Cloudflare's infrastructure that acts as a secure relay</li>
+        <li>The Worker combines your message with context about Joe's work and sends it to an AI language model to generate a response</li>
+        <li>The response is returned to your browser and displayed in the chat window</li>
+      </ul>
+      <p>That's it. The conversation goes in, a response comes out.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Is my data stored?</h2>
+      <p><strong>By Joe:</strong> No. Joe does not operate any database, logging system, or analytics tool connected to the chatbot. No conversation data is stored, reviewed, or retained by Joe.</p>
+      <p><strong>By Cloudflare:</strong> Cloudflare processes requests through its Workers platform and may retain request metadata (such as IP address and timestamp) for security and operational purposes. See <a href="https://www.cloudflare.com/privacypolicy" target="_blank">cloudflare.com/privacypolicy</a> for the definitive position.</p>
+      <p><strong>By the AI providers:</strong> Messages are processed by third-party AI inference providers to generate responses. Joe takes reasonable steps to use providers with responsible data handling practices and will update this policy if providers change.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Is my conversation used to train AI models?</h2>
+      <p>Joe selects AI providers specifically to minimise data retention and avoid training use. This policy will be updated if that changes. No third-party AI provider can currently guarantee zero data handling — refer to the linked privacy policies below for the definitive position.</p>
+      <p>If you are concerned about data privacy, avoid sharing personal, sensitive, or confidential information in the chat. Bear Necessities is designed to answer questions about Joe's professional work — there is no need to share personal details to use it.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>What about cookies?</h2>
+      <p>The Bear Necessities chat widget does not set any cookies. The consent acknowledgement is stored only in your browser's session memory and disappears when you close the tab. Nothing is written to your device's persistent storage.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>What data does the chatbot actually need?</h2>
+      <p>Only the text you type. Bear Necessities does not request, access, or process:</p>
+      <ul>
+        <li>Your name or email address</li>
+        <li>Your location</li>
+        <li>Any data from your device beyond the message text</li>
+        <li>Any data from other tabs or applications</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Third-party services</h2>
+      <p>Bear Necessities relies on the following third-party services to operate:</p>
+      <table class="policy-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Purpose</th>
+            <th>Privacy Policy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cloudflare Workers</td>
+            <td>Secure message relay and primary AI inference</td>
+            <td><a href="https://www.cloudflare.com/privacypolicy" target="_blank">cloudflare.com/privacypolicy</a></td>
+          </tr>
+          <tr>
+            <td>Groq</td>
+            <td>Fallback AI inference</td>
+            <td><a href="https://groq.com/privacy" target="_blank">groq.com/privacy</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 1rem;">Joe is not responsible for the data practices of these third parties. Their privacy policies govern how they handle data passed through their services.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Your rights (UK GDPR)</h2>
+      <p>Under UK GDPR, you have rights including the right to access, correct, and request deletion of personal data held about you. Given that Joe does not store any conversation data, there is no personal data held by Joe to action.</p>
+      <p>For data held by third-party providers, you would need to contact those providers directly using their own data request processes.</p>
+      <p>If you have a privacy concern about this chatbot specifically, contact Joe directly via his portfolio site.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Changes to this policy</h2>
+      <p>If the chatbot's architecture changes in a way that affects data handling, this policy will be updated and the "Last updated" date at the top will change.</p>
+      <p class="policy-footer-note">Bear Necessities is a personal portfolio project. It is not a commercial service and does not generate revenue. This policy is provided in good faith to be transparent about how the chatbot works.</p>
+    </div>
+
+  </div>
+</section>
+
+<div id="footer"></div>
+
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

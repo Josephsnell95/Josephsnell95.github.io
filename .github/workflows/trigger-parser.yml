@@ -1,0 +1,53 @@
+name: Trigger Parser on Pages Update
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-parser:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Pages repo
+        uses: actions/checkout@v4
+
+      - name: Checkout chatbot repo
+        uses: actions/checkout@v4
+        with:
+          repository: Josephsnell95/context-driven-chatbot
+          token: ${{ secrets.CHATBOT_REPO_PAT }}
+          path: chatbot
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r chatbot/parser/requirements.txt
+
+      - name: Run parser
+        env:
+          PAGES_REPO_PATH: ${{ github.workspace }}
+        run: python chatbot/parser/parser.py
+
+      - name: Check for changes
+        id: diff
+        run: |
+          cd chatbot
+          git diff --quiet supplementary-context.txt || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Open PR if changed
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.CHATBOT_REPO_PAT }}
+          path: chatbot
+          commit-message: 'chore: update supplementary-context.txt from parser'
+          branch: chore/update-supplementary-context
+          title: 'chore: update supplementary context'
+          body: |
+            Automated PR — parser ran following a push to the Pages repo.
+            Review the diff and merge if the context looks correct.

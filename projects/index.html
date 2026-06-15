@@ -1,71 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects · Joseph Snell</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
+
 <body>
 
-<div id="nav" data-type="sub" data-back-url="/" data-back-label="← Home"></div>
+  <div id="nav" data-type="sub" data-back-url="/" data-back-label="← Home"></div>
 
-<section id="hero" style="border-bottom: 1px solid var(--faint);">
-  <div class="hero-inner" style="grid-template-columns: 1fr; padding-bottom: 3.5rem;">
-    <div>
-      <div class="hero-eyebrow">What I've built</div>
-      <h1>Projects</h1>
-      <p class="hero-desc">A full record of projects — analytical tools, data pipelines, and anything else worth documenting. Work ranges from production-grade to experimental.</p>
+  <section id="hero" style="border-bottom: 1px solid var(--faint);">
+    <div class="hero-inner" style="grid-template-columns: 1fr; padding-bottom: 3.5rem;">
+      <div>
+        <div class="hero-eyebrow">What I've built</div>
+        <h1>Projects</h1>
+        <p class="hero-desc">A full record of projects — analytical tools, data pipelines, and anything else worth
+          documenting. Work ranges from production-grade to experimental.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="container">
-    <div class="projects-list reveal">
+  <section>
+    <div class="container">
+      <div class="projects-list reveal">
 
-      <!-- MRO Inventory Optimisation -->
-      <div class="project-row">
-        <div>
-          <div class="project-type">Python · Inventory · Demo</div>
-          <div class="project-name">MRO Inventory Optimisation Engine</div>
-          <div class="project-desc">Safety stock, reorder points, EOQ, ABC/XYZ classification and walk-forward validation across 24 months of goods issue and receiving data. Power BI visualisation layer in progress.</div>
-          <div class="stack-tags">
-            <span class="stag">Python</span><span class="stag">scikit-learn</span><span class="stag">Power BI</span>
+        <!-- MRO Inventory Optimisation -->
+        <div class="project-row">
+          <div>
+            <div class="project-type">Python · Inventory · Demo</div>
+            <div class="project-name">MRO Inventory Optimisation Engine</div>
+            <div class="project-desc">Safety stock, reorder points, EOQ, ABC/XYZ classification and walk-forward
+              validation across 24 months of goods issue and receiving data. Power BI visualisation layer in progress.
+            </div>
+            <div class="stack-tags">
+              <span class="stag">Python</span><span class="stag">scikit-learn</span><span class="stag">Power BI</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="inventory_optimiser.html" class="plink">📄 Full write-up ↗</a>
+            <a href="https://github.com/Josephsnell95/mro_inventory_optimisation" target="_blank" class="plink">⌥ Repo
+              ↗</a>
           </div>
         </div>
-        <div class="project-links">
-          <a href="inventory_optimiser.html" class="plink">📄 Full write-up ↗</a>
-          <a href="https://github.com/Josephsnell95/mro_inventory_optimisation" target="_blank" class="plink">⌥ Repo ↗</a>
-        </div>
-      </div>
 
-      <!-- Placeholder 1 -->
-      <div class="project-row" style="opacity: 0.5;">
-        <div>
-          <div class="project-type">Coming Soon</div>
-          <div class="project-name" style="color: var(--muted);">Project in Progress</div>
-          <div class="project-desc">Currently being prepared for publication. Check back soon.</div>
+        <!-- Bear Necessities -->
+        <div class="project-row">
+          <div>
+            <div class="project-type">Python · AI · Personal</div>
+            <div class="project-name">Bear Necessities</div>
+            <div class="project-desc">A context-driven AI chatbot embedded in this portfolio. Parses site content into a
+              governed knowledge base, deployed via Cloudflare Workers with a graceful fallback chain. Named after my
+              daughter.</div>
+            <div class="stack-tags">
+              <span class="stag">Python</span><span class="stag">Cloudflare Workers</span><span class="stag">Vanilla
+                JS</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="bear_necessities.html" class="plink">📄 Full write-up ↗</a>
+            <a href="https://github.com/Josephsnell95/context-driven-chatbot" target="_blank" class="plink">⌥ Repo ↗</a>
+          </div>
         </div>
-      </div>
 
-      <!-- Placeholder 2 -->
-      <div class="project-row" style="opacity: 0.5;">
-        <div>
-          <div class="project-type">Coming Soon</div>
-          <div class="project-name" style="color: var(--muted);">Project in Progress</div>
-          <div class="project-desc">Currently being prepared for publication. Check back soon.</div>
+        <!-- Placeholder 2 -->
+        <div class="project-row" style="opacity: 0.5;">
+          <div>
+            <div class="project-type">Coming Soon</div>
+            <div class="project-name" style="color: var(--muted);">Project in Progress</div>
+            <div class="project-desc">Currently being prepared for publication. Check back soon.</div>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div id="footer"></div>
+  <div id="footer"></div>
 
-<script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
+
 </html>

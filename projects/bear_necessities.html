@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bear Necessities · Joseph Snell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="nav" data-type="sub" data-back-url="/projects/" data-back-label="← All Projects"></div>
+
+<!-- HERO -->
+<div class="project-hero">
+  <div class="container container--narrow">
+    <div class="project-eyebrow">Personal Project · AI · Portfolio</div>
+    <h1>Bear<br><em>Necessities</em></h1>
+    <p class="project-summary">
+      A context-driven AI chatbot embedded in this portfolio site. Built to help recruiters and collaborators find what they need without digging — ask it anything about my work, skills, or background and it'll point you in the right direction. Named after my daughter.
+    </p>
+
+    <div class="project-meta">
+      <div class="meta-item">
+        <span class="meta-label">Type</span>
+        <span class="meta-value">Personal Project</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Domain</span>
+        <span class="meta-value">AI · Web</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Stack</span>
+        <span class="meta-value">Python · Cloudflare Workers · Vanilla JS</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Status</span>
+        <span class="meta-value">Live</span>
+      </div>
+    </div>
+
+    <div class="project-cta">
+      <a href="https://github.com/Josephsnell95/context-driven-chatbot" target="_blank" class="btn btn-solid">View on GitHub ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="container container--narrow">
+
+  <!-- PROBLEM -->
+  <div class="content-section reveal">
+    <p class="section-label">The problem</p>
+    <h2>Portfolios are passive. Recruiters are busy.</h2>
+    <p>Most portfolio sites ask visitors to do the work — navigate the pages, read the write-ups, piece together whether the person is what they're looking for. For a recruiter with ten tabs open, that's friction.</p>
+    <p>I wanted to build something that answered questions directly. Not a FAQ, not a contact form — something a visitor could actually talk to. That meant learning how to incorporate AI into a real, constrained environment for the first time. The learning journey was as much the point as the outcome.</p>
+    <p>It's also an homage to my daughter, Bear — whose nickname gave the bot its name.</p>
+  </div>
+
+  <!-- WHAT IT DOES -->
+  <div class="content-section reveal">
+    <p class="section-label">What it does</p>
+    <h2>A governed context chatbot</h2>
+    <p>Bear Necessities only knows what I've explicitly told it. Content is extracted from this site's HTML by a Python parser, cleaned into plain text, and baked into a Cloudflare Worker at deploy time. There is no runtime database, no live fetching — the context is a string constant in the Worker, built from what's published here.</p>
+    <p>Persona, tone, easter eggs, and hard behavioural rules are defined in plain markdown files. The bot speaks in third person, leads with business impact, and redirects warmly when it can't help. It does not guess, invent, or go off-script.</p>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-name">Parser</div>
+        <div class="metric-desc">Python scripts extract meaningful content from GitHub Pages HTML and Jupyter notebooks into a clean context file</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">Worker</div>
+        <div class="metric-desc">Cloudflare Worker acts as a secure API proxy — context baked in at deploy time, keys never exposed to the browser</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">Widget</div>
+        <div class="metric-desc">Self-contained floating chat UI in vanilla HTML and JavaScript — no frameworks, embeddable in any static site</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">Persona</div>
+        <div class="metric-desc">Identity, tone, and easter eggs defined in markdown — warm, witty, and firmly Joe-shaped</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">Fallback chain</div>
+        <div class="metric-desc">Cloudflare Workers AI → Groq/Llama → graceful failure message. Never broken, never costs money</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">Privacy</div>
+        <div class="metric-desc">No cookies, no database, no logging. Conversation lives in sessionStorage only — gone when the tab closes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TECHNICAL -->
+  <div class="content-section reveal">
+    <p class="section-label">Technical walkthrough</p>
+    <h2>The decisions that mattered</h2>
+    <p>The architecture is deliberately simple, but a few decisions were worth thinking through carefully.</p>
+    <p><strong>Context baked at deploy time.</strong> The bot's knowledge isn't fetched at runtime — it's a string constant inside the Worker, built from the parser output and deployed with the code. This means zero latency on context retrieval and no runtime dependencies. The tradeoff is that updating the bot's knowledge requires redeploying the Worker. A CI/CD pipeline automates this: a push to the Pages repo triggers the parser, which diffs the output and opens a PR on the chatbot repo if anything has changed.</p>
+    <p><strong>Rate limits as a cost constraint, not a reliability constraint.</strong> Both free API tiers enforce daily limits. The Worker catches rate limit errors and returns a friendly redirect message rather than a broken experience — so the bot degrades gracefully regardless of traffic. No cost is ever incurred beyond the free tier.</p>
+    <p><strong>GDPR-conscious architecture.</strong> The primary AI path stays entirely within Cloudflare — the message never leaves their infrastructure unless the fallback fires. Combined with no persistent storage and a consent notice before first use, the data footprint is as light as a public-facing chatbot can reasonably be.</p>
+    <p><strong>Static site constraint.</strong> GitHub Pages serves static files only — no server, no environment variables. The Cloudflare Worker acts as the secure middleman: API keys live in its environment, never in code that reaches the browser.</p>
+  </div>
+
+  <!-- STACK -->
+  <div class="content-section reveal">
+    <p class="section-label">Stack</p>
+    <h2>Technologies used</h2>
+    <div class="stack-list">
+      <div class="stack-row">
+        <span class="stack-name">Python</span>
+        <span class="stack-role">HTML and notebook parsing, context generation, CI/CD validation</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">Cloudflare Workers</span>
+        <span class="stack-role">Secure API proxy and primary AI inference</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">Llama 3.3 70B</span>
+        <span class="stack-role">Primary language model via Cloudflare Workers AI</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">Groq</span>
+        <span class="stack-role">Fallback inference — Llama 3.3 70B at high speed</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">Vanilla JS</span>
+        <span class="stack-role">Chat widget — no frameworks, sessionStorage for state</span>
+      </div>
+      <div class="stack-row">
+        <span class="stack-name">GitHub Actions</span>
+        <span class="stack-role">CI/CD — parser trigger on Pages push, validation gate on chatbot repo PRs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="content-section reveal">
+    <p class="section-label">What's next</p>
+    <h2>Roadmap</h2>
+    <div class="roadmap-list">
+      <div class="roadmap-item">
+        <span class="roadmap-status status-done">Done</span>
+        <div>
+          <div class="roadmap-title">Governed context chatbot</div>
+          <div class="roadmap-desc">Parser, Worker, widget, persona, easter eggs, graceful failure chain — fully deployed and live.</div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-done">Done</span>
+        <div>
+          <div class="roadmap-title">CI/CD pipeline</div>
+          <div class="roadmap-desc">Parser trigger on Pages push, validation gate on chatbot repo PRs — context stays fresh automatically.</div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-next">Next</span>
+        <div>
+          <div class="roadmap-title">Mobile responsive improvements</div>
+          <div class="roadmap-desc">Widget panel layout needs review at small screen sizes.</div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-future">Planned</span>
+        <div>
+          <div class="roadmap-title">Source-aware responses</div>
+          <div class="roadmap-desc">Bear surfaces links to the relevant page on this site alongside answers — so visitors can navigate directly to the write-up rather than just reading a summary.</div>
+        </div>
+      </div>
+      <div class="roadmap-item">
+        <span class="roadmap-status status-future">Planned</span>
+        <div>
+          <div class="roadmap-title">RAG architecture</div>
+          <div class="roadmap-desc">Replace the baked-in context string with a vector database — semantic retrieval at query time rather than loading everything into the prompt. The right approach as the site grows.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="footer"></div>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -39,3 +39,13 @@ fetch('/assets/html/footer.html')
     const el = document.getElementById('footer');
     if (el) el.outerHTML = html;
   });
+
+// Widget
+fetch('/assets/html/chatbot.html')
+  .then(r => r.text())
+  .then(html => {
+    document.body.insertAdjacentHTML('beforeend', html);
+    const script = document.createElement('script');
+    script.src = '/assets/js/chatbot.js';
+    document.body.appendChild(script);
+  });

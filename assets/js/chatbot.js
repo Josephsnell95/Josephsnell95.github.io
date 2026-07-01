@@ -28,7 +28,7 @@ function togglePanel() {
         sessionStorage.setItem('chatOpen', 'false');
     }
 }
-
+ 
 chatToggle.addEventListener('click', togglePanel);
 
 function closeChat() {
